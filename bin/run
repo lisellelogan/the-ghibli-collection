@@ -2,4 +2,5 @@
 
 require_relative "../environment"
 
-puts "this has run"
+cli_instance = CLI.new
+cli_instance.start
