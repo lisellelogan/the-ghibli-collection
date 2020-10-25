@@ -7,4 +7,4 @@ This app allows the user to choose from a collection of Studio Ghibli films and 
 
 Through this information, the user will then be able to determine which film peaks their interest the most and slowly turn them into a Studio Ghibli fanatic. The Ghibli Collection uses the Studio Ghibli API from https://ghibliapi.herokuapp.com/ in order to provide a database of Studio Ghibli films.
 
-This Ghibli Collection was written using Ruby.
+The Ghibli Collection was written using Ruby.
