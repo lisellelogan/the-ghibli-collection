@@ -14,30 +14,28 @@ class CLI
         puts "Would you like to see the collection of Studio Ghibli films?"
         puts "Type 'yes' or 'y' to continue or type any other key to exit"
 
-        user_input = gets.strip.downcase
+        user_input = gets.strip.downcase 
 
         if user_input == "yes" || user_input == "y"
             puts "\n"
             puts "Good choice! Ready to become a Studio Ghibli fanatic?"
             puts "\n"
-            sleep(2)
+            sleep(1)
 
             puts "----------The Studio Ghibli film collection----------"
             display_list_of_films
             if ask_user_filter_options
-                sleep(1)
-                self.directory
             else ask_user_film_choice
-                sleep(1)
-                self.directory
             end
 
-            # sleep(1)
-            # self.directory
+            sleep(1)
+            self.directory
+        # elsif #display sorted rt_score list
+
         else
             sleep(1)
             puts "\n"
-            puts "Goodbye for now. Happy watching!"
+            puts "Goodbye for now! Happy watching!"
             puts """
             @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
             @@@@@@@@@@@@@@@@@@@@@@@@@@@&     .@@@@@@@@@@@@%     /@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -103,14 +101,36 @@ class CLI
     end
 
     def ask_user_sort_by_rt_score_or_release_date
-        puts "Okay, would you like to sort by rotten tomato score or release date?"
+        puts "\n"
+        puts "Don't worry, we got you!! Would you like to sort by rotten tomato score or release date?"
         puts "Enter 'rt score' to sort by rotten tomato score or 'year' to sort by releate date"
+
         user_input = gets.strip.downcase
+        puts "\n"
+
+        until user_input == 'rt score' || user_input =='year'
+            puts "Sorry, I don't understand. Please enter 'rt score' or 'year'"
+            user_input = gets.strip.downcase
+        end
+
+        if user_input == 'rt score'
+            display_sorted_films_by_rt_score
+            puts "\n"
+        else
+            display_sorted_films_by_year
+            puts "\n"
+        end
+    end
+
+    def display_sorted_films_by_rt_score
+        sorted_films = Film.all.sort_by {|film| -film.rt_score.to_i}
+        sorted_films.each.with_index(1) do |film, index|
+            puts "#{index}. #{film.title}"
+        end
     end
 
     def ask_user_film_choice
         #ask user for choice
-        puts "\n"
         puts "Which film would you like to know more about? Please enter the number associated"
         index = gets.strip.to_i - 1
 
