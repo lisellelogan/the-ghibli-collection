@@ -1,7 +1,9 @@
 class CLI
 
     def start
+        puts "\n"
         puts "Welcome to The Ghibli Collection!"
+        puts "\n"
         API.get_films
         self.directory
     end
@@ -20,7 +22,10 @@ class CLI
         #if user says yes
         if user_input == "yes" || user_input == "y"
             puts "You chose well!"
+            puts "\n"
+            sleep(1)
             #show list of films
+            puts "The Studio Ghibli film collection:"
             display_list_of_films
             ask_user_film_choice
             
@@ -28,6 +33,7 @@ class CLI
             #want to go back and ask user if they want to see films (recursion)
             self.directory
         else
+            sleep(1)
             puts "\n"
             puts "Goodbye for now. Happy watching!"
             puts """
@@ -78,6 +84,7 @@ class CLI
 
     def ask_user_film_choice
         #ask user for choice
+        puts "\n"
         puts "Enter the number of the film you would like to know more about"
         index = gets.strip.to_i - 1
 
@@ -98,9 +105,9 @@ class CLI
         #you want to display attributes of film
         sleep(1)
         puts "\n"
-        puts "Title: #{film.title}"
+        puts "#{film.title}" + " (#{film.release_date})"
         puts "Description: #{film.description}"
-        puts "Release Date: #{film.release_date}"
+        # puts "Release Date: #{film.release_date}"
         puts "Rotten Tomato Score: #{film.rt_score}"
         puts "Director: #{film.director}"
         puts "Producer: #{film.producer}"
