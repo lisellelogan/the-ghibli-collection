@@ -56,6 +56,8 @@ class CLI
 
     def display_film_information(film)
         #you want to display attributes of film
+        sleep(1)
+        puts "\n"
         puts "Title: #{film.title}"
         puts "Description: #{film.description}"
         puts "Release Date: #{film.release_date}"
