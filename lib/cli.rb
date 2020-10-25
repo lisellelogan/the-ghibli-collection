@@ -23,8 +23,13 @@ class CLI
             #show list of films
             display_list_of_films
             ask_user_film_choice
+            
+            sleep(1)
+            #want to go back and ask user if they want to see films (recursion)
+            self.directory
         else
-            #exit
+            puts "\n"
+            puts "Goodbye for now. Hope to see you soon!"
         end
     end
 
@@ -64,6 +69,7 @@ class CLI
         puts "Rotten Tomato Score: #{film.rt_score}"
         puts "Director: #{film.director}"
         puts "Producer: #{film.producer}"
+        puts "\n"
     end
 
 end
