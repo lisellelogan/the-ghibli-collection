@@ -8,30 +8,32 @@ class CLI
         self.directory
     end
 
-    #want to list out all the films
-    #allow user to choose a film and get info on that film
-
     def directory
         #giver user ability to see list of films
         #prompt user for input
         puts "Would you like to see the collection of Studio Ghibli films?"
         puts "Type 'yes' or 'y' to continue or type any other key to exit"
-        
+
         user_input = gets.strip.downcase
 
-        #if user says yes
         if user_input == "yes" || user_input == "y"
-            puts "You chose well!"
             puts "\n"
-            sleep(1)
-            #show list of films
-            puts "The Studio Ghibli film collection:"
+            puts "Good choice! Ready to become a Studio Ghibli fanatic?"
+            puts "\n"
+            sleep(2)
+
+            puts "----------The Studio Ghibli film collection----------"
             display_list_of_films
-            ask_user_film_choice
-            
-            sleep(1)
-            #want to go back and ask user if they want to see films (recursion)
-            self.directory
+            if ask_user_filter_options
+                sleep(1)
+                self.directory
+            else ask_user_film_choice
+                sleep(1)
+                self.directory
+            end
+
+            # sleep(1)
+            # self.directory
         else
             sleep(1)
             puts "\n"
@@ -82,21 +84,45 @@ class CLI
         end
     end
 
+    def ask_user_filter_options
+        #ask the user if want to sort by rt_score or release_date
+        puts "\n"
+        puts "Feeling overwhelmed? Enter 'yes' or 'no'"
+        user_input = gets.strip.downcase
+
+        until user_input == 'yes' || user_input =='no'
+            puts "Sorry, I don't understand. Please enter 'yes' or 'no'"
+            user_input = gets.strip.downcase
+        end
+
+        if user_input == 'yes'
+            ask_user_sort_by_rt_score_or_release_date
+        else
+            puts "Okay, lets continue!"
+        end
+    end
+
+    def ask_user_sort_by_rt_score_or_release_date
+        puts "Okay, would you like to sort by rotten tomato score or release date?"
+        puts "Enter 'rt score' to sort by rotten tomato score or 'year' to sort by releate date"
+        user_input = gets.strip.downcase
+    end
+
     def ask_user_film_choice
         #ask user for choice
         puts "\n"
-        puts "Enter the number of the film you would like to know more about"
+        puts "Which film would you like to know more about? Please enter the number associated"
         index = gets.strip.to_i - 1
 
         #checks if index is valid (must be b/w 0 and 20)
         until index.between?(0, Film.all.length - 1)
             #keeps asking for user input until valid
-            puts "Invalid number. Please choose a valid number"
+            puts "Oh no! Looks like you've entered an invalid number. Please select a valid number"
             index = gets.strip.to_i - 1
         end
-        
+
         film_instance = Film.all[index]
-        
+
         #need to display the film choice
         display_film_information(film_instance)
     end
@@ -105,10 +131,11 @@ class CLI
         #you want to display attributes of film
         sleep(1)
         puts "\n"
-        puts "#{film.title}" + " (#{film.release_date})"
+        puts "----------#{film.title}" + " (#{film.release_date})----------"
         puts "Description: #{film.description}"
-        # puts "Release Date: #{film.release_date}"
-        puts "Rotten Tomato Score: #{film.rt_score}"
+        puts "\n"
+        puts "Rotten Tomato Score: 🍅#{film.rt_score}%"
+        puts "\n"
         puts "Director: #{film.director}"
         puts "Producer: #{film.producer}"
         puts "\n"
