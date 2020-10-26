@@ -24,9 +24,8 @@ class CLI
 
             puts "----------The Studio Ghibli film collection----------"
             display_list_of_films
-            if ask_user_filter_options
-            else ask_user_film_choice
-            end
+            # ask_user_filter_options
+            ask_user_film_choice
 
             sleep(1)
             self.directory
@@ -78,59 +77,13 @@ class CLI
         #access all films
         #print each film out
         Film.all.each.with_index(1) do |film, index|
-            puts "#{index}. #{film.title}"
-        end
-    end
-
-    def ask_user_filter_options
-        #ask the user if want to sort by rt_score or release_date
-        puts "\n"
-        puts "Feeling overwhelmed? Enter 'yes' or 'no'"
-        user_input = gets.strip.downcase
-
-        until user_input == 'yes' || user_input =='no'
-            puts "Sorry, I don't understand. Please enter 'yes' or 'no'"
-            user_input = gets.strip.downcase
-        end
-
-        if user_input == 'yes'
-            ask_user_sort_by_rt_score_or_release_date
-        else
-            puts "Okay, lets continue!"
-        end
-    end
-
-    def ask_user_sort_by_rt_score_or_release_date
-        puts "\n"
-        puts "Don't worry, we got you!! Would you like to sort by rotten tomato score or release date?"
-        puts "Enter 'rt score' to sort by rotten tomato score or 'year' to sort by releate date"
-
-        user_input = gets.strip.downcase
-        puts "\n"
-
-        until user_input == 'rt score' || user_input =='year'
-            puts "Sorry, I don't understand. Please enter 'rt score' or 'year'"
-            user_input = gets.strip.downcase
-        end
-
-        if user_input == 'rt score'
-            display_sorted_films_by_rt_score
-            puts "\n"
-        else
-            display_sorted_films_by_year
-            puts "\n"
-        end
-    end
-
-    def display_sorted_films_by_rt_score
-        sorted_films = Film.all.sort_by {|film| -film.rt_score.to_i}
-        sorted_films.each.with_index(1) do |film, index|
-            puts "#{index}. #{film.title}"
+            puts "#{index}. #{film.title} - 🍅#{film.rt_score}%"
         end
     end
 
     def ask_user_film_choice
         #ask user for choice
+        puts "\n"
         puts "Which film would you like to know more about? Please enter the number associated"
         index = gets.strip.to_i - 1
 
@@ -160,5 +113,58 @@ class CLI
         puts "Producer: #{film.producer}"
         puts "\n"
     end
+
+    # def ask_user_filter_options
+    #     ask the user if want to sort by rt_score or release_date
+    #     puts "\n"
+    #     puts "Feeling overwhelmed? Enter 'yes' or 'no'"
+    #     user_input = gets.strip.downcase
+
+    #     until user_input == 'yes' || user_input =='no'
+    #         puts "Sorry, I don't understand. Please enter 'yes' or 'no'"
+    #         user_input = gets.strip.downcase
+    #     end
+
+    #     if user_input == 'yes'
+    #         ask_user_sort_by_rt_score_or_release_date
+    #     else
+    #         puts "Okay, lets continue!"
+    #     end
+    # end
+
+    # def ask_user_sort_by_rt_score_or_release_date
+    #     puts "\n"
+    #     puts "Don't worry, we got you!! Would you like to sort by rotten tomato score or release date?"
+    #     puts "Enter 'rt score' to sort by rotten tomato score or 'year' to sort by releate date"
+
+    #     user_input = gets.strip.downcase
+    #     puts "\n"
+
+    #     until user_input == 'rt score' || user_input =='year'
+    #         puts "Sorry, I don't understand. Please enter 'rt score' or 'year'"
+    #         user_input = gets.strip.downcase
+    #     end
+
+    #     if user_input == 'rt score'
+    #         sleep(1)
+    #         puts "----------Studio Ghibli Films Ranked from Highest to Lowest Rotten Tomato Score----------"
+    #         display_sorted_films_by_rt_score
+    #         puts "\n"
+
+    #         sleep(4)
+    #         puts "After looking at the films ranked by rotten tomato score, here is the original list of Studio Ghibli films"
+    #         display_list_of_films
+    #     else
+    #         display_sorted_films_by_year
+    #         puts "\n"
+    #     end
+    # end
+
+    # def display_sorted_films_by_rt_score
+    #     sorted_films = Film.all.sort_by {|film| -film.rt_score.to_i}
+    #     sorted_films.collect.with_index(1) do |film, index|
+    #         puts "#{index}. #{film.title} 🍅 #{film.rt_score}%"
+    #     end
+    # end
 
 end
