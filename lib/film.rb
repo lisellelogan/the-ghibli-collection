@@ -16,4 +16,8 @@ class Film
         Film.all.sort_by {|film| -film.rt_score.to_i}
     end
 
+    def self.sort_by_release_date
+        Film.all.sort_by {|film| -film.release_date.to_i}
+    end
+
 end

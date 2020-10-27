@@ -96,10 +96,10 @@ class CLI
 
         if @filter == "no filter"
             film_instance = Film.all[index]
-        elsif 
+        elsif @filter == "rotten"
             film_instance = Film.sort_by_rt_score[index]
-        else #year
-
+        else 
+            film_instance = Film.sort_by_release_date[index]
         end
 
         #need to display the film choice
@@ -122,7 +122,6 @@ class CLI
 
     def ask_user_filter_options
         # ask the user if want to sort by rt_score or release_date
-        @filter = "no filter"
         puts "\n"
         puts "Would you like to see the list using a filter? Enter 'yes' or 'no'"
         user_input = gets.strip.downcase
@@ -136,18 +135,19 @@ class CLI
             ask_user_sort_by_rt_score_or_release_date
         else
             puts "Okay, lets continue!"
+            @filter = "no filter"
         end
     end
 
     def ask_user_sort_by_rt_score_or_release_date
         puts "\n"
         puts "Don't worry, we got you!! Would you like to sort by rotten tomato score or release date?"
-        puts "Enter 'rt score' to sort by rotten tomato score or 'year' to sort by releate date"
+        puts "Enter 'rt score' to sort by rotten tomato score or 'date' to sort by releate date"
 
         user_input = gets.strip.downcase
         puts "\n"
 
-        until user_input == 'rt score' || user_input =='year'
+        until user_input == 'rt score' || user_input =='date'
             puts "Sorry, I don't understand. Please enter 'rt score' or 'year'"
             user_input = gets.strip.downcase
         end
@@ -156,13 +156,12 @@ class CLI
             sleep(1)
             puts "----------Studio Ghibli Films Ranked from Highest to Lowest Rotten Tomato Score----------"
             display_sorted_films_by_rt_score
+            @filter = "rotten"
             puts "\n"
-
-            # sleep(4)
-            # puts "After looking at the films ranked by rotten tomato score, here is the original list of Studio Ghibli films"
-            # display_list_of_films
         else
-            display_sorted_films_by_year
+            sleep(1)
+            puts "----------Studio Ghibli Films Ranked Most Recent to Oldest Film----------"
+            display_sorted_films_by_release_date
             puts "\n"
         end
     end
@@ -172,5 +171,11 @@ class CLI
             puts "#{index}. #{film.title} 🍅 #{film.rt_score}%"
         end
     end
+
+    def display_sorted_films_by_release_date
+        Film.sort_by_release_date.map.with_index(1) do |film, index|
+            puts "#{index}. #{film.title} (#{film.release_date})"
+        end 
+    end 
 
 end
