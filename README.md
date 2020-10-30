@@ -21,7 +21,11 @@ If the user enters "no" the app will proceed with the original display of the li
 
 If the user enters "yes" the app will proceed with prompting the user to choose between sorting the list of films by rotten tomato score or by release date. 
 
-Once the user chooses which filter to use, the sorted list will be displayed in order from highest to lowest. The user will 
+Once the user chooses which filter to use, the sorted list will be displayed in order from highest to lowest. The user will then be prompted to choose the number of the film from the sorted list that they would like to know more about.
+
+Once the user has chosen a film, the app will then prompt the user if they would like to see the list of Studio Ghibli films in which the user would again enter either "yes" or "y" to continue or the user can exit by entering any other key.
+
+If the user chooses to continue, the app will run again with a series of questions to prompt the user for input. If the user chooses to exit, the app will say "Goodbye for now! Happy watching!" and display an ascii art of Totoro.
 
 ## Installation
 To install this app, go to github to fork and clone this repository.
