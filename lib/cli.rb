@@ -160,7 +160,7 @@ class CLI
             puts "\n"
         else
             sleep(1)
-            puts "----------Studio Ghibli Films Ranked Most Recent to Oldest Film----------"
+            puts "----------Studio Ghibli Films Ranked from Most Recent to Oldest Film----------"
             display_sorted_films_by_release_date
             puts "\n"
         end
