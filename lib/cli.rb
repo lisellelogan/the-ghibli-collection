@@ -148,7 +148,7 @@ class CLI
         puts "\n"
 
         until user_input == 'rt score' || user_input =='date'
-            puts "Sorry, I don't understand. Please enter 'rt score' or 'year'"
+            puts "Sorry, I don't understand. Please enter 'rt score' or 'date'"
             user_input = gets.strip.downcase
         end
 
@@ -162,6 +162,7 @@ class CLI
             sleep(1)
             puts "----------Studio Ghibli Films Ranked from Most Recent to Oldest Film----------"
             display_sorted_films_by_release_date
+            @filter = ""
             puts "\n"
         end
     end
