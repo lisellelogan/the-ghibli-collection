@@ -9,6 +9,12 @@ Through this information, the user will then be able to determine which film pea
 
 The Ghibli Collection was written using Ruby.
 
+## Visuals
+A video demo of the application: https://youtu.be/6eajeiOMNus
+
+## Installation
+To install this app, go to github to fork and clone this repository.
+
 ## Usage
 Begin by running the executable using "ruby bin/run"
 
@@ -25,9 +31,7 @@ Once the user chooses which filter to use, the sorted list will be displayed in 
 
 Once the user has chosen a film, the app will then prompt the user if they would like to see the list of Studio Ghibli films in which the user would again enter either "yes" or "y" to continue or the user can exit by entering any other key.
 
-If the user chooses to continue, the app will run again with a series of questions to prompt the user for input. If the user chooses to exit, the app will say "Goodbye for now! Happy watching!" and display an ascii art of Totoro.
+If the user chooses to continue, the app will run again with a series of questions to prompt the user for input. If the user chooses to exit, the app will say "Goodbye for now! Happy watching!" and display an ascii art of Totoro (used an Ascii art converter at https://manytools.org/hacker-tools/convert-images-to-ascii-art/).
 
-## Installation
-To install this app, go to github to fork and clone this repository.
-
-
+## Contributing
+Open to contributions, pull requests welcome. For any major changes please open an issue first to discuss the changes you would to make.

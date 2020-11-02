@@ -9,8 +9,6 @@ class CLI
     end
 
     def directory
-        #giver user ability to see list of films
-        #prompt user for input
         puts "Would you like to see the collection of Studio Ghibli films?"
         puts "Type 'yes' or 'y' to continue or type any other key to exit"
 
@@ -20,7 +18,7 @@ class CLI
             puts "\n"
             puts "Good choice! Ready to become a Studio Ghibli fanatic?"
             puts "\n"
-            sleep(2)
+            sleep(1)
 
             puts "----------The Studio Ghibli film collection----------"
             display_list_of_films
@@ -29,7 +27,6 @@ class CLI
 
             sleep(1)
             self.directory
-        # elsif #display sorted rt_score list
 
         else
             sleep(1)
@@ -74,22 +71,17 @@ class CLI
     end
 
     def display_list_of_films
-        #access all films
-        #print each film out
         Film.all.each.with_index(1) do |film, index|
             puts "#{index}. #{film.title}"
         end
     end
 
     def ask_user_film_choice
-        #ask user for choice
         puts "\n"
         puts "Which film would you like to know more about? Please enter the number associated"
         index = gets.strip.to_i - 1
 
-        #checks if index is valid (must be b/w 0 and 20)
         until index.between?(0, Film.all.length - 1)
-            #keeps asking for user input until valid
             puts "Oh no! Looks like you've entered an invalid number. Please select a valid number"
             index = gets.strip.to_i - 1
         end
@@ -102,12 +94,10 @@ class CLI
             film_instance = Film.sort_by_release_date[index]
         end
 
-        #need to display the film choice
         display_film_information(film_instance)
     end
 
     def display_film_information(film)
-        #you want to display attributes of film
         sleep(1)
         puts "\n"
         puts "----------#{film.title}" + " (#{film.release_date})----------"
@@ -121,7 +111,6 @@ class CLI
     end
 
     def ask_user_filter_options
-        # ask the user if want to sort by rt_score or release_date
         puts "\n"
         puts "Would you like to see the list using a filter? Enter 'yes' or 'no'"
         user_input = gets.strip.downcase
@@ -142,7 +131,7 @@ class CLI
     def ask_user_sort_by_rt_score_or_release_date
         puts "\n"
         puts "Don't worry, we got you!! Would you like to sort by rotten tomato score or release date?"
-        puts "Enter 'rt score' to sort by rotten tomato score or 'date' to sort by releate date"
+        puts "Enter 'rt score' to sort by rotten tomato score or 'date' to sort by release date"
 
         user_input = gets.strip.downcase
         puts "\n"
