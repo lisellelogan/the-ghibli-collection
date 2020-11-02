@@ -38,3 +38,6 @@ If the user chooses to continue, the app will run again with a series of questio
 
 ## Contributing
 Open to contributions, pull requests welcome. For any major changes please open an issue first to discuss the changes you would to make.
+
+## License
+https://choosealicense.com/licenses/mit/ 
